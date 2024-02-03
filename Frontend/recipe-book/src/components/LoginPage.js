@@ -48,14 +48,16 @@ export default function SignIn() {
         },
         body: JSON.stringify(formData),
       });
-      if (response.ok) {
+    
+      if (response.status === 200) {
         console.log('Login Successful');
+        window.location.href = '/home';
       } else {
         console.error('Login Failed');
       }
-      } catch (error) {
-        console.error('Error:', error);
-      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
     };
 
   return (

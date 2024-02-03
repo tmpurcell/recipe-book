@@ -16,6 +16,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
 
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function MenuAppBar() {
   
@@ -85,7 +86,7 @@ export default function MenuAppBar() {
                 </ListItem>
                 <Collapse in={openNested} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                  <ListItem button onClick={() => redirectRoute("/uploadRecipe")}>
+                  <ListItem button onClick={() => redirectRoute("/UploadRecipe")}>
                       <ListItemText primary="Upload Recipe" />
                     </ListItem>
                     <ListItem button onClick={() => redirectRoute('/viewRecipes')}>
@@ -94,14 +95,15 @@ export default function MenuAppBar() {
                   </List>
                 </Collapse>
                 <ListItem button  onClick={() => redirectRoute("/About")}>
-                  <ListItemText primary="About" />
+                  <ListItemText primary="Get In Contact!" />
                 </ListItem>
               </List>
           </Menu>
-
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            BYTES
-          </Typography>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                BYTES
+              </Link>
+            </Typography>
 
           {/* Right hand side */}
 
@@ -133,10 +135,7 @@ export default function MenuAppBar() {
               >
                 <ListItem button onClick={() => redirectRoute("/profile")}>
                   <ListItemText primary="Profile" />
-                </ListItem>
-                <ListItem button onClick={() => redirectRoute("/myaccount")}>
-                  <ListItemText primary="My Account" />
-                </ListItem>                
+                </ListItem>               
                 <ListItem button onClick={() => redirectRoute("/login")}>
                   <ListItemText primary="Login" />
                 </ListItem>
