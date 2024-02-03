@@ -34,10 +34,7 @@ export default function UploadRecipeImage() {
       setShowMessage(true); // Show the message box when uploading starts
 
       const formData = new FormData();
-      formData.append('image', selectedFile);
-
-      // Include the file name in the request body
-      formData.append('filename', selectedFile.name);
+      formData.append('filename', selectedFile.name); // Only append the file name to the FormData
 
       const response = await fetch('http://127.0.0.1:8000/image_upload', {
         method: 'POST',
