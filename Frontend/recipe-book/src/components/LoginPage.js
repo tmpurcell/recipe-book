@@ -13,12 +13,12 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Login(props) {
+function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Bytes
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -26,19 +26,37 @@ function Login(props) {
   );
 }
 
-
 const defaultTheme = createTheme();
 
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
+    const formData = {
+      username: data.get('username'),
       password: data.get('password'),
-    });
-  };
+    };
+
+    console.log('Form Data:', formData);
+
+    try {
+      const response = await fetch('127.0.0.1:8000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        console.log('Login Successful');
+      } else {
+        console.error('Login Failed');
+      }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -63,10 +81,10 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
+              id="username"
+              label="Username"
               name="email"
-              autoComplete="email"
+              autoComplete="Username"
               autoFocus
             />
             <TextField
@@ -105,6 +123,7 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
+        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
