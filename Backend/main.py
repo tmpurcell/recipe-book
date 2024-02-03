@@ -1,11 +1,7 @@
 from typing import Union
-from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
-class Login(BaseModel):
-    username: str
-    password: str
+from models.login import Login
 
 app = FastAPI()
 
