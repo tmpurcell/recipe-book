@@ -5,3 +5,6 @@ class User(BaseModel):
     email: Union[str, None] = None
     username: Union[str, None] = None
     password: str
+
+class Image(BaseModel):
+    filename: str
