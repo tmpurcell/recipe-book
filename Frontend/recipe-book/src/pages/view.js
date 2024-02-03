@@ -1,12 +1,11 @@
 import React from 'react';
 
-import viewRecipes from '../components/ViewRecipies';
-
+import ViewRecipes from '../components/ViewRecipies';
 
 function View() {
     return(
         <div>
-            <viewRecipes />
+            <ViewRecipes />
         </div>
     );
 }
