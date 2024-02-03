@@ -86,11 +86,11 @@ export default function MenuAppBar() {
                 </ListItem>
                 <Collapse in={openNested} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
+                  <ListItem button onClick={() => redirectRoute('/viewRecipes')}>
+                      <ListItemText primary="View Recipes" />
+                    </ListItem>
                   <ListItem button onClick={() => redirectRoute("/upload")}>
                       <ListItemText primary="Upload Recipe" />
-                    </ListItem>
-                    <ListItem button onClick={() => redirectRoute('/viewRecipes')}>
-                      <ListItemText primary="View Recipes" />
                     </ListItem>
                   </List>
                 </Collapse>
