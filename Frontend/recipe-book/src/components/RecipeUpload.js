@@ -9,6 +9,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import RecipeModel from '../models/RecipeModel';
 import { useRecipeContext } from '../recipeContext';
+import { useNavigate } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
@@ -17,7 +18,9 @@ export default function UploadRecipeImage() {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [showMessage, setShowMessage] = useState(false); // State to manage message box visibility
+  const [showConfirmation, setShowConfirmation] = useState(false); // State to manage confirmation dialog visibility
   const { addRecipe } = useRecipeContext();
+  const navigate = useNavigate()
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -27,23 +30,23 @@ export default function UploadRecipeImage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     if (!selectedFile) {
       console.error('No file selected');
       return;
     }
-  
+
     try {
       setShowMessage(true); // Show the message box when uploading starts
-  
+
       const dataToSend = {
-        filename: selectedFile.name // Create an object with the file name
+        filename: selectedFile.name, // Create an object with the file name
       };
-  
+
       const response = await fetch('http://127.0.0.1:8000/image_upload', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json' // Corrected content type
+          'Content-Type': 'application/json', // Corrected content type
         },
         body: JSON.stringify(dataToSend),
         onUploadProgress: (progressEvent) => {
@@ -51,9 +54,10 @@ export default function UploadRecipeImage() {
           setUploadProgress(progress);
         },
       });
-  
+
       if (response.ok) {
         console.log('Image upload successful');
+        setShowConfirmation(true); // Show confirmation dialog
       } else {
         console.error('Image upload failed');
       }
@@ -65,14 +69,24 @@ export default function UploadRecipeImage() {
         responseBody.steps
       );
 
-      addRecipe(recipeInstance)
+      addRecipe(recipeInstance);
       console.log('Recipe Model Instance:', recipeInstance);
-  
+
       setShowMessage(false); // Hide the message box when upload is complete
     } catch (error) {
       console.error('Error uploading image:', error);
       setShowMessage(false); // Hide the message box if there's an error
     }
+  };
+
+  const handleViewRecipe = () => {
+    navigate('/viewRecipes')
+  };
+
+  const handleAddAnotherRecipe = () => {
+    setSelectedFile(null);
+    setPreviewUrl(null);
+    setShowConfirmation(false); // Close the confirmation dialog
   };
 
   return (
@@ -104,21 +118,11 @@ export default function UploadRecipeImage() {
               style={{ display: 'none' }}
             />
             <label htmlFor="contained-button-file">
-              <Button
-                variant="contained"
-                component="span"
-                fullWidth
-                sx={{ mt: 3, mb: 2 }}
-              >
+              <Button variant="contained" component="span" fullWidth sx={{ mt: 3, mb: 2 }}>
                 Choose File
               </Button>
             </label>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 1, mb: 2 }}
-            >
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 1, mb: 2 }}>
               Upload
             </Button>
           </Box>
@@ -142,6 +146,35 @@ export default function UploadRecipeImage() {
               <Typography variant="body1" align="center">
                 Gathering Information...
               </Typography>
+            </Box>
+          )}
+          {showConfirmation && (
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                padding: '20px',
+                borderRadius: '5px',
+              }}
+            >
+              <Typography variant="body1" align="center">
+                Your Recipe Has Been Uploaded!
+              </Typography>
+              <br />
+              <Typography variant="body1" align="center">
+                Would you like to view your recipes?
+              </Typography>
+              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                <Button onClick={handleViewRecipe} variant="outlined" sx={{ mr: 2 }}>
+                  Yes
+                </Button>
+                <Button onClick={handleAddAnotherRecipe} variant="outlined">
+                  No, I'd like to add another Recipe
+                </Button>
+              </Box>
             </Box>
           )}
         </Box>
