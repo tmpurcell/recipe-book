@@ -24,33 +24,37 @@ export default function UploadRecipeImage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     if (!selectedFile) {
       console.error('No file selected');
       return;
     }
-
+  
     try {
       setShowMessage(true); // Show the message box when uploading starts
-
-      const formData = new FormData();
-      formData.append('filename', selectedFile.name); // Only append the file name to the FormData
-
+  
+      const dataToSend = {
+        filename: selectedFile.name // Create an object with the file name
+      };
+  
       const response = await fetch('http://127.0.0.1:8000/image_upload', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json' // Corrected content type
+        },
+        body: JSON.stringify(dataToSend),
         onUploadProgress: (progressEvent) => {
           const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
           setUploadProgress(progress);
         },
       });
-
+  
       if (response.ok) {
         console.log('Image upload successful');
       } else {
         console.error('Image upload failed');
       }
-
+  
       setShowMessage(false); // Hide the message box when upload is complete
     } catch (error) {
       console.error('Error uploading image:', error);
