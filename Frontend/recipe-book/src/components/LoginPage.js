@@ -41,7 +41,7 @@ export default function SignIn() {
     console.log('Form Data:', formData);
 
     try {
-      const response = await fetch('127.0.0.1:8000/login', {
+      const response = await fetch('https://127.0.0.1:8000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -83,8 +83,8 @@ export default function SignIn() {
               fullWidth
               id="username"
               label="Username"
-              name="email"
-              autoComplete="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField
