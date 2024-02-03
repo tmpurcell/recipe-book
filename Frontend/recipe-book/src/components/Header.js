@@ -80,19 +80,16 @@ export default function MenuAppBar() {
                   <ListItemText primary="Home" />
                 </ListItem>
                 <ListItem button onClick={clickFeatures}>
-                  <ListItemText primary="Features" />
+                  <ListItemText primary="My Recipes" />
                   {openNested ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
                 <Collapse in={openNested} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                  <ListItem button onClick={() => redirectRoute("/Feature1")}>
-                      <ListItemText primary="Feature1" />
+                  <ListItem button onClick={() => redirectRoute("/uploadRecipe")}>
+                      <ListItemText primary="Upload Recipe" />
                     </ListItem>
-                  <ListItem button onClick={() => redirectRoute("/Feature2")}>
-                      <ListItemText primary="Feature2" />
-                    </ListItem>
-                    <ListItem button onClick={() => redirectRoute("/Feature3")}>
-                      <ListItemText primary="Feature3" />
+                    <ListItem button onClick={() => redirectRoute('/viewRecipes')}>
+                      <ListItemText primary="View Recipes" />
                     </ListItem>
                   </List>
                 </Collapse>
@@ -103,7 +100,7 @@ export default function MenuAppBar() {
           </Menu>
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Name Goes here
+            BYTES
           </Typography>
 
           {/* Right hand side */}
@@ -146,8 +143,8 @@ export default function MenuAppBar() {
                 <ListItem button onClick={() => redirectRoute("/logout")}>
                   <ListItemText primary="Logout" />
                 </ListItem>
-                <ListItem button onClick={() => redirectRoute("/register")}>
-                  <ListItemText primary="Register" />
+                <ListItem button onClick={() => redirectRoute("/signup")}>
+                  <ListItemText primary="Sign Up!" />
                 </ListItem>
               </Menu>
 
