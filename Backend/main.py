@@ -1,7 +1,7 @@
 from typing import Union
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from models.models import User, Image
+from models.models import User, Image, AIPrompt
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
@@ -40,13 +40,13 @@ async def image_upload(image: Image):
         return True
     return False
 
-@app.get('/poem')
-async def generate_poem():
+@app.post('/generate_recipe')
+async def generate_recipe(prompt: AIPrompt):
     completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
-        {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
-        {"role": "user", "content": "Compose a poem that explains the concept of recursion in programming."}
+        #{"role": "system", "content": "You are a helpful chef, skilled in cooking complex meals and explaining how to make them with creative flair."},
+        {"role": "user", "content": prompt.prompt}
     ]
     )
     return completion.choices[0].message

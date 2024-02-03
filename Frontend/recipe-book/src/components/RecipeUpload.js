@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import LinearProgress from '@mui/material/LinearProgress';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import RecipeModel from '../models/RecipeModel';
+import { useRecipeContext } from '../recipeContext';
 
 const defaultTheme = createTheme();
 
@@ -15,6 +17,7 @@ export default function UploadRecipeImage() {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [showMessage, setShowMessage] = useState(false); // State to manage message box visibility
+  const { addRecipe } = useRecipeContext();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -54,6 +57,16 @@ export default function UploadRecipeImage() {
       } else {
         console.error('Image upload failed');
       }
+      const responseBody = await response.json();
+
+      const recipeInstance = new RecipeModel(
+        responseBody.title,
+        responseBody.ingredients,
+        responseBody.steps
+      );
+
+      addRecipe(recipeInstance)
+      console.log('Recipe Model Instance:', recipeInstance);
   
       setShowMessage(false); // Hide the message box when upload is complete
     } catch (error) {

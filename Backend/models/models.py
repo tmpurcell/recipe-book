@@ -8,3 +8,6 @@ class User(BaseModel):
 
 class Image(BaseModel):
     filename: str
+
+class AIPrompt(BaseModel):
+    prompt: str

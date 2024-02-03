@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-
+import { RecipeProvider } from './recipeContext';
 import Home from './pages/index.js';
 import Login from './pages/login.js';
 import SignUp from './pages/signup.js';
@@ -9,7 +9,8 @@ import View from './pages/view.js';
 import Header from './components/Header.js';
   
 function App() { 
-    return ( 
+    return (
+      <RecipeProvider> 
         <div className="App">
           <Router>
             <Header />
@@ -22,6 +23,7 @@ function App() {
             </Routes>
           </Router>
         </div>
+      </RecipeProvider>
     ); 
 } 
   
