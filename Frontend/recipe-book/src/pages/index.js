@@ -3,26 +3,40 @@ import React from "react";
 function Home() {
   return (
     <div className='home-container'>
-      <div className='home'>
         <header>
-          <h1>Welcome to Bytes!</h1>
+          <h1 className='home-header'>Welcome to BYTES!</h1>
         </header>
         <div className='info'>
-          <h2>Explore the Delicious World of Food</h2>
+          <h2 className='home-header'>Why BYTES?</h2>
           <p>
-            Welcome to Bytes, your ultimate destination for food enthusiasts. Whether you're a seasoned chef or a culinary novice, we have something delightful for everyone.
+            Tired of misplacing your favorite recipe? Don’t know what to cook for dinner? Looking for more creative meal prep options? Welcome to BYTES: A one stop shop for all your culinary needs.
           </p>
-          <p>
-            Embark on a gastronomic journey as you discover mouthwatering recipes, cooking tips from top chefs, and fascinating insights into various cuisines from around the globe.
-          </p>
-          <h3>Stay Hungry, Stay Curious</h3>
-          <p>
-            Here at Bytes, we believe that food is more than just sustenance; it's a celebration of culture, creativity, and community. Join us in savoring the rich tapestry of flavors that the world has to offer.
-          </p>
+        </div>
+
+        {/* Two blocks side by side */}
+        <div className='home-container-2'>
+        <div className="side-by-side">
+          <div className="block">
+            <h2>Virtual Cookbook</h2>
+            <p>Finding the recipe you’re looking for has never been easier. Simply scan and upload your recipes into your virtual cookbook. BYTES will organize your recipes alphabetically for effortless pinpointing. </p>
+          </div>
+          <div className="block">
+            <h2>AI Integration</h2>
+            <p>Are you interested in cooking something new, but lacking inspiration? BYTES utilizes generative AI to suggest personalized meal recommendations based on what you’re in the mood for, what ingredients you already have on hand, and will take your weekly grocery budget into consideration.</p>
+          </div>
+          </div>
+        
+
+        {/* Additional container with border */}
+        <div className="additional-container">
+        <div className="additional-box">
+          <h2>Choose BYTES!</h2>
+          <p>Don’t waste time rummaging through papers or scrolling through Pinterest, hoping something sparks your interest. Don’t stress, cook your best with BYTES!</p>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default Home;

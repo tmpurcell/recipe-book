@@ -53,14 +53,15 @@ export default function MenuAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: '#fff0e0'}}>
         <Toolbar>
           <IconButton
-            size="large"
+            width= '3rem'
+            height='3rem'
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, color: '#004921' }}
             onClick={clickLeftMenu}
           >
             <MenuIcon />
@@ -73,7 +74,7 @@ export default function MenuAppBar() {
             id="menu-appbar"
             anchorEl={anchorEl2}
             open={Boolean(anchorEl2)}
-            onClose={() => {setAnchorEl2(null);setOpenNested(true);}}>
+            onClose={() => {setAnchorEl2(null);setOpenNested(true);}} >
             <List
                 component="nav"
                 aria-labelledby="nested-list-subheader"
@@ -103,7 +104,14 @@ export default function MenuAppBar() {
                 </ListItem>
               </List>
           </Menu>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography sx={{
+              flexGrow: 1,
+              color: '#004921', // Adjust the color if needed
+              fontWeight: 'bold', // Make the text thicker
+              fontSize: '4.0rem', // Adjust the font size
+              fontFamily: 'Nonchalance',
+              fontStyle: 'italic'
+            }}>
               <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 BYTES
               </Link>
@@ -117,7 +125,7 @@ export default function MenuAppBar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={clickRightMenu}
-                color="inherit"
+                color="#004921"
               >
                 <AccountCircle />
               </IconButton>
