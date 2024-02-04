@@ -10,8 +10,17 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import RecipeModel from '../models/RecipeModel';
 import { useRecipeContext } from '../recipeContext';
 import { useNavigate } from "react-router-dom";
-import { Grid, Card, CardContent, TextField, Paper } from '@mui/material';
+import { Grid, Card, CardContent, TextField, Paper, styled } from '@mui/material';
 
+const StyledCard = styled(Card)({
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  variant: 'outlined',
+  margin: '11px',
+  backgroundColor: '#fff0e0',
+  color: '#004921'
+});
 const defaultTheme = createTheme();
 
 export default function UploadRecipeImage() {
@@ -107,21 +116,23 @@ export default function UploadRecipeImage() {
   };
 
   return (
-    <Grid container spacing={2} justifyContent="center" alignItems="center">
+    <Grid container spacing={2} justifyContent="center" alignItems="strech">
       {/* First Card */}
       <Grid item xs={12} sm={6}>
-        <Card style={{ height: '100%' }}>
+        <StyledCard>
           <CardContent>
           <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+          <Container component="main" maxWidth="xs" sx={{ height: '100%' }}>
+          <Paper elevation={3} style={{ padding: 20, marginTop: 20, backgroundColor:'#fff0e0' }}>
         <CssBaseline />
         <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center', // Center horizontally
+              height: '100%', // Make sure the Box takes full height
+            }}
         >
           <Typography component="h1" variant="h5">
             Upload an image of your recipe to add it to your recipies book!
@@ -140,11 +151,11 @@ export default function UploadRecipeImage() {
               style={{ display: 'none' }}
             />
             <label htmlFor="contained-button-file">
-              <Button variant="contained" component="span" fullWidth sx={{ mt: 3, mb: 2 }}>
+              <Button variant="contained" component="span" fullWidth sx={{ mt: 3, mb: 2, backgroundColor: '#004921','&:hover':{backgroundColor: '#004921'} }}>
                 Choose File
               </Button>
             </label>
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 1, mb: 2 }}>
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 1, mb: 2, backgroundColor: '#004921','&:hover':{backgroundColor: '#004921'} }}>
               Upload
             </Button>
           </Box>
@@ -199,21 +210,22 @@ export default function UploadRecipeImage() {
             </Box>
           )}
         </Box>
+        </Paper>
       </Container>
     </ThemeProvider>
           </CardContent>
-        </Card>
+        </StyledCard>
       </Grid>
             {/* Second Card */}
             <Grid item xs={12} sm={6}>
-        <Card>
+        <StyledCard>
           <CardContent style={{ height:'100%' }}>
           <Container component="main" maxWidth="md">
-      <Paper elevation={3} style={{ padding: 20, marginTop: 20 }}>
+      <Paper elevation={3} style={{ padding: 20, marginTop: 20, backgroundColor:'#fff0e0' }}>
         <Typography variant="h4" gutterBottom>
           Add a New Recipe
         </Typography>
-        <form onSubmit={handleSubmitForm}>
+        <form style={{backgroundColor: '#fff0e0', color: '#004921'}} onSubmit={handleSubmitForm}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -250,7 +262,7 @@ export default function UploadRecipeImage() {
               />
             </Grid>
             <Grid item xs={12}>
-              <Button type="submit" variant="contained" color="primary">
+              <Button type="submit" variant="contained" color="primary" sx={{backgroundColor: '#004921','&:hover':{backgroundColor: '#004921'}}}>
                 Submit
               </Button>
             </Grid>
@@ -259,7 +271,7 @@ export default function UploadRecipeImage() {
       </Paper>
     </Container>
           </CardContent>
-        </Card>
+        </StyledCard>
       </Grid>
     </Grid>
   );

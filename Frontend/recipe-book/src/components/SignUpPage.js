@@ -198,7 +198,7 @@ export default function SignUpForm() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2,backgroundColor: '#004921','&:hover':{backgroundColor: '#004921'}}}
               onClick={() => setErrors({})}
             >
               Sign Up
