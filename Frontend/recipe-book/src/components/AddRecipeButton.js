@@ -19,7 +19,7 @@ const AddRecipeButton = ({ recipeName, ingredients, steps, onAddToMyRecipes }) =
   };
 
   return (
-    <Button variant="contained" color="primary" onClick={handleAddToMyRecipes}>
+    <Button variant="contained" style={{color: '#004921', backgroundColor: '#fff0e0'}} onClick={handleAddToMyRecipes}>
       Add to My Recipes
     </Button>
   );

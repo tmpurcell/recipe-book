@@ -2,6 +2,7 @@
   text-align: center;
   background-color: #004921;
   padding: 50px;
+  min-height: 100vh
 }
   
   .App-logo {
@@ -151,4 +152,41 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(255, 0, 0, 0.1);
     padding: 20px; /* Adjust as needed */
+  }
+
+  .AI-container {
+    background-color: #e58c3d;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.1);
+    width: auto;
+    margin: 10px;
+    padding: 5px;
+  }
+
+  .AI-container-2 {
+    background-color: #fff0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.1);
+    width: auto;
+    padding: 25px;
+    margin: 50px;
+    padding-bottom: 50px;
+  }
+
+  .meal-ai-container {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+  }
+
+  .AI-meal-contain {
+    background-color: #e58c3d;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.1);
+    width: auto;
+    padding: 25px;
+    margin: 50px;
+    padding: 50px;
+    color: #004921;
   }

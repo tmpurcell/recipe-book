@@ -20,9 +20,9 @@ import { AIRecipeProvider } from './aiRecipeContext';
   
 function App() { 
     return (
+      <div className="App">
       <RecipeProvider> 
         <AIRecipeProvider>
-        <div className="App">
           <Router>
             <Header />
             <Routes>
@@ -38,9 +38,9 @@ function App() {
               <Route path='/AvailableItems' element={<AvailableItems />} />
             </Routes>
           </Router>
-        </div>
         </AIRecipeProvider>
       </RecipeProvider>
+      </div>
     ); 
 } 
   

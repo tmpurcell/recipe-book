@@ -53,14 +53,14 @@ function MealSuggestion() {
                     onChange={(event) => setFoodType(event.target.value)}
                     fullWidth
                     margin="normal"
-                    sx={{ backgroundColor: 'white', '& input': { color: 'black' } }}
+                    sx={{ backgroundColor: '#fff0e0', '& input': { color: '#004921' } }}
                 />
-                <Button type="submit" variant="contained" color="primary" sx={{ backgroundColor: 'black', color: 'white' }}>
+                <Button type="submit" variant="contained" color="primary" sx={{ backgroundColor: '#fff0e0', color: '#004921', '&:hover':{backgroundColor: '#e58c3d'} }}>
                     Submit
                 </Button>
             </form>
             <div style={{ marginTop: '20px' }}> {/* Add margin to create space */}
-                {loading && <CircularProgress />} {/* Show loading icon if loading state is true */}
+            {loading && <CircularProgress style={{color: '#fff0e0'}}/>} {/* Show loading icon if loading state is true */}
                 </div>
             <div>
             <FormattedText text={responseText} />
@@ -85,7 +85,7 @@ function FormattedText({ text }) {
 
     // Display the formatted recipe
     return (
-        <div>
+        <div className='AI-meal-contain'>
             <h2>{structuredRecipe.mealItem}</h2>
             <h2>Ingredients</h2>
             <p>{structuredRecipe.ingredients}</p>
