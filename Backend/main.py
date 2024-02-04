@@ -1,7 +1,7 @@
 from typing import Union
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from models.models import User, Image, AIPrompt
+from models.models import User, Image, AIPrompt, MealPrep
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
@@ -45,13 +45,46 @@ async def image_upload(image: Image):
         return recipe
 
 
-@app.post('/generate_recipe')
+@app.post('/meal_suggestions')
 async def generate_recipe(prompt: AIPrompt):
     completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
         #{"role": "system", "content": "You are a helpful chef, skilled in cooking complex meals and explaining how to make them with creative flair."},
-        {"role": "user", "content": prompt.prompt}
+        {"role": "user", "content": "I'm in the mood for " + prompt.prompt + " can you suggest a recipe that I should try?"}
+    ]
+    )
+    return completion.choices[0].message
+
+@app.post('/budget_plan')
+async def generate_recipe_within_budget(prompt: AIPrompt):
+    completion = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        #{"role": "system", "content": "You are a helpful chef, skilled in cooking complex meals and explaining how to make them with creative flair."},
+        {"role": "user", "content": "My budget for groceries is " + prompt.prompt + " can you suggest some recipes that I should try? And can you include average prices for the ingredients?"}
+    ]
+    )
+    return completion.choices[0].message
+
+@app.post('/meal_prep')
+async def generate_meal_prep(mealPrep: MealPrep):
+    completion = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        #{"role": "system", "content": "You are a helpful chef, skilled in cooking complex meals and explaining how to make them with creative flair."},
+        {"role": "user", "content": "I am preparing to meal prep " + mealPrep.foodType + " for " + mealPrep.duration + " days. Can you suggest some recipes that I should try?"}
+    ]
+    )
+    return completion.choices[0].message
+
+@app.post('/available_items')
+async def generate_meal_prep(prompt: AIPrompt):
+    completion = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        #{"role": "system", "content": "You are a helpful chef, skilled in cooking complex meals and explaining how to make them with creative flair."},
+        {"role": "user", "content": "I have limited ingredients and need suggestions for what I can make with them. I have " + prompt.prompt + " available. Can you suggest some recipes that I could try?"}
     ]
     )
     return completion.choices[0].message

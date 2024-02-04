@@ -11,3 +11,7 @@ class Image(BaseModel):
 
 class AIPrompt(BaseModel):
     prompt: str
+
+class MealPrep(BaseModel):
+    foodType: str
+    duration: str

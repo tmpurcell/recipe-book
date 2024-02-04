@@ -10,6 +10,11 @@ function MealPrep() {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
+        const dataToSend = {
+            foodType: foodType, 
+            duration: prepDuration,
+          }; 
+
         // Send the form data to the backend
         try {
             const response = await fetch('http://127.0.0.1:8000/meal_prep', {
@@ -17,7 +22,7 @@ function MealPrep() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ foodType, prepDuration })
+                body: JSON.stringify(dataToSend)
             });
 
             if (response.ok) {

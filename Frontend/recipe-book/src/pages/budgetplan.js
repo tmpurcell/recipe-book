@@ -6,6 +6,10 @@ import Button from '@mui/material/Button';
 function BudgetPlan() {
     const [budgetAmount, setBudgetAmount] = useState('');
 
+    const dataToSend = {
+        prompt: budgetAmount, 
+      }; 
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
@@ -16,7 +20,7 @@ function BudgetPlan() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ budgetAmount })
+                body: JSON.stringify(dataToSend)
             });
 
             if (response.ok) {

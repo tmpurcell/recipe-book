@@ -6,6 +6,10 @@ import Button from '@mui/material/Button';
 function MealSuggestion() {
     const [foodType, setFoodType] = useState('');
 
+    const dataToSend = {
+        prompt: foodType, 
+      }; 
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
@@ -16,7 +20,7 @@ function MealSuggestion() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ foodType })
+                body: JSON.stringify(dataToSend)
             });
 
             if (response.ok) {
