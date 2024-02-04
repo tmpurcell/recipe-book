@@ -48,7 +48,7 @@ async def image_upload(image: Image):
 @app.post('/meal_suggestions')
 async def generate_recipe(prompt: AIPrompt):
     completion = client.chat.completions.create(
-    model="gpt-3.5-turbo",
+    model="gpt-3.5-turbo-16k-0613",
     messages=[
         #{"role": "system", "content": "You are a helpful chef, skilled in cooking complex meals and explaining how to make them with creative flair."},
         {"role": "user", "content": "I'm in the mood for " + prompt.prompt + " can you suggest a recipe that I should try?"}

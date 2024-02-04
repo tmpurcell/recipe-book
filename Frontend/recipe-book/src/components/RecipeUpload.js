@@ -124,7 +124,7 @@ export default function UploadRecipeImage() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Upload Image
+            Upload an image of your recipe to add it to your recipies book!
           </Typography>
           {previewUrl && ( // Show the preview if the previewUrl is available
             <Box sx={{ mt: 2 }}>
