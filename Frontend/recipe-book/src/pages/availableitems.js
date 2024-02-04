@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 import AIKitchen from '../components/AIKitchenPage';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function AvailableItems() {
     const [ingredients, setIngredients] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [responseText, setResponseText] = useState('');
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
         const dataToSend = {
-            prompt: ingredients, 
-          }; 
+            prompt: ingredients,
+        };
 
-        // Send the form data to the backend
+        setLoading(true);
+
         try {
             const response = await fetch('http://127.0.0.1:8000/available_items', {
                 method: 'POST',
@@ -24,14 +28,15 @@ function AvailableItems() {
             });
 
             if (response.ok) {
-                // Handle success, maybe show a success message
-                console.log('Form submitted successfully');
+                const responseData = await response.json();
+                setResponseText(responseData.content); // Assuming the response contains a "text" field
             } else {
-                // Handle error, maybe show an error message
                 console.error('Form submission failed');
             }
         } catch (error) {
             console.error('Error submitting form:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -52,8 +57,40 @@ function AvailableItems() {
                     Submit
                 </Button>
             </form>
-        </div>
+                <div style={{ marginTop: '20px' }}> {/* Add margin to create space */}
+                    {loading && <CircularProgress />} {/* Show loading icon if loading state is true */}
+                </div>
+                <div>
+                    <FormattedText text={responseText} />
+                </div>
+            </div>
     );
 }
 
+function FormattedText({ text }) {
+    // Check if text is empty or undefined
+    if (!text) return null;
+
+    // Split the text into sections
+    const sections = text.split(/Sure!|Ingredients|Instructions/);
+
+    // Organize the text into structured recipe
+    const structuredRecipe = {
+        mealItem: sections[1]?.trim(),
+        ingredients: sections[2]?.trim(),
+        steps: sections[3]?.trim(),
+    };
+
+    // Display the formatted recipe
+    return (
+        <div>
+            <h2>{structuredRecipe.mealItem}</h2>
+            <h2>Ingredients</h2>
+            <p>{structuredRecipe.ingredients}</p>
+            <h2>Steps</h2>
+            <p>{structuredRecipe.steps}</p>
+            
+        </div>
+    );
+}
 export default AvailableItems;

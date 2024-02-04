@@ -51,7 +51,7 @@ async def generate_recipe(prompt: AIPrompt):
     model="gpt-3.5-turbo",
     messages=[
         #{"role": "system", "content": "You are a helpful chef, skilled in cooking complex meals and explaining how to make them with creative flair."},
-        {"role": "user", "content": "I'm in the mood for " + prompt.prompt + " can you suggest a recipe that I should try?"}
+        {"role": "user", "content": "I'm in the mood for " + prompt.prompt + " can you suggest a recipe that I should try? Can you also start the response with Sure!"}
     ]
     )
     return completion.choices[0].message
@@ -62,7 +62,7 @@ async def generate_recipe_within_budget(prompt: AIPrompt):
     model="gpt-3.5-turbo",
     messages=[
         #{"role": "system", "content": "You are a helpful chef, skilled in cooking complex meals and explaining how to make them with creative flair."},
-        {"role": "user", "content": "My budget for groceries is " + prompt.prompt + " can you suggest some recipes that I should try? And can you include average prices for the ingredients?"}
+        {"role": "user", "content": "My budget for groceries is " + prompt.prompt + " can you suggest a recipe that I should try? And can you include average prices for the ingredients? Can you also start the response with Sure!"}
     ]
     )
     return completion.choices[0].message
@@ -73,7 +73,7 @@ async def generate_meal_prep(mealPrep: MealPrep):
     model="gpt-3.5-turbo",
     messages=[
         #{"role": "system", "content": "You are a helpful chef, skilled in cooking complex meals and explaining how to make them with creative flair."},
-        {"role": "user", "content": "I am preparing to meal prep " + mealPrep.foodType + " for " + mealPrep.duration + " days. Can you suggest some recipes that I should try?"}
+        {"role": "user", "content": "I am preparing to meal prep " + mealPrep.foodType + " for " + mealPrep.duration + " days. Can you suggest a recipe that I should try? Can you also start the response with Sure!"}
     ]
     )
     return completion.choices[0].message
@@ -84,7 +84,7 @@ async def generate_meal_prep(prompt: AIPrompt):
     model="gpt-3.5-turbo",
     messages=[
         #{"role": "system", "content": "You are a helpful chef, skilled in cooking complex meals and explaining how to make them with creative flair."},
-        {"role": "user", "content": "I have limited ingredients and need suggestions for what I can make with them. I have " + prompt.prompt + " available. Can you suggest some recipes that I could try?"}
+        {"role": "user", "content": "I have limited ingredients and need suggestions for what I can make with them. I have " + prompt.prompt + " available. Can you suggest a recipe that I could try? Can you also start the response with Sure!"}
     ]
     )
     return completion.choices[0].message
