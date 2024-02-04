@@ -177,24 +177,23 @@ export default function UploadRecipeImage() {
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                backgroundColor: 'rgba(255, 255, 255, 1)',
                 padding: '20px',
                 borderRadius: '5px',
+                border: '2px solid #000', // Add a border with 2px width and black color
+                zIndex: 9999,
               }}
             >
               <Typography variant="body1" align="center">
-                Your Recipe Has Been Uploaded!
+                Recipe added!
               </Typography>
               <br />
-              <Typography variant="body1" align="center">
-                Would you like to view your recipes?
-              </Typography>
               <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                 <Button onClick={handleViewRecipe} variant="outlined" sx={{ mr: 2 }}>
-                  Yes
+                  View recipies
                 </Button>
                 <Button onClick={handleAddAnotherRecipe} variant="outlined">
-                  No, I'd like to add another Recipe
+                  Close
                 </Button>
               </Box>
             </Box>
