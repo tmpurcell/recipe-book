@@ -1,6 +1,14 @@
 import React from 'react';
-import { Grid, Card, CardContent } from '@mui/material';
+import { Grid, Card, CardContent, styled } from '@mui/material';
 import { useRecipeContext } from '../recipeContext';
+
+const StyledCard = styled(Card)({
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    variant: 'outlined',
+    margin: '11px',
+  });
 
 const ViewRecipes = () => {
     const { recipeList } = useRecipeContext();
@@ -8,7 +16,7 @@ const ViewRecipes = () => {
     <Grid container spacing={1}>
       {recipeList.map((recipe) => (
         <Grid key={recipe.id} item xs={12} sm={6} >
-           <Card variant='outlined' style={{ margin:'11px'}}>
+           <StyledCard>
              <CardContent>
              <div>
            <h3>{recipe.title}</h3>
@@ -26,16 +34,11 @@ const ViewRecipes = () => {
             <br></br>
             <strong>Steps:</strong>
             <br></br>
-            {Array.isArray(recipe.steps) && recipe.steps.map((step, i) => (
-              <React.Fragment key={i}>
-                {i > 0 && <br />} {/* Add a newline after the first step */}
-                {step}
-              </React.Fragment>
-            ))}
+            {recipe.steps}
           </div>
         </div>
             </CardContent>
-          </Card>
+          </StyledCard>
         </Grid>
       ))}
     </Grid>
