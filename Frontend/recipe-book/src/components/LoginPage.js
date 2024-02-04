@@ -51,7 +51,7 @@ export default function SignIn() {
     
       if (response.status === 200) {
         console.log('Login Successful');
-        window.location.href = '/home';
+        window.location.href = '/';
       } else {
         console.error('Login Failed');
       }

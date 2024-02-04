@@ -22,7 +22,7 @@ export default function UploadRecipeImage() {
   const [showConfirmation, setShowConfirmation] = useState(false); // State to manage confirmation dialog visibility
   const { addRecipe } = useRecipeContext();
   const navigate = useNavigate()
-  const [recipeTitle, setRecipeTitle] = useState('');
+  const [title, setRecipeTitle] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [steps, setSteps] = useState('');
 
@@ -34,8 +34,15 @@ export default function UploadRecipeImage() {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log({ recipeTitle, ingredients, steps });
+    const recipeInstance = new RecipeModel(title, ingredients.split(','), steps.split(','));
+    
+    addRecipe(recipeInstance);
+
+    setRecipeTitle('');
+    setIngredients('');
+    setSteps('');
+
+    console.log({ title, ingredients, steps });
   };
 
   const handleSubmit = async (event) => {
@@ -214,7 +221,7 @@ export default function UploadRecipeImage() {
                 fullWidth
                 label="Recipe Title"
                 variant="outlined"
-                value={recipeTitle}
+                value={title}
                 onChange={(e) => setRecipeTitle(e.target.value)}
                 required
               />

@@ -26,7 +26,7 @@ const ViewRecipes = () => {
             <br></br>
             <strong>Steps:</strong>
             <br></br>
-            {recipe.steps.map((step, i) => (
+            {Array.isArray(recipe.steps) && recipe.steps.map((step, i) => (
               <React.Fragment key={i}>
                 {i > 0 && <br />} {/* Add a newline after the first step */}
                 {step}
