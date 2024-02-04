@@ -14,12 +14,14 @@ import AvailableItems from './pages/availableitems.js';
 
 
 import Header from './components/Header.js';
+import { AIRecipeProvider } from './aiRecipeContext';
 
 
   
 function App() { 
     return (
       <RecipeProvider> 
+        <AIRecipeProvider>
         <div className="App">
           <Router>
             <Header />
@@ -37,6 +39,7 @@ function App() {
             </Routes>
           </Router>
         </div>
+        </AIRecipeProvider>
       </RecipeProvider>
     ); 
 } 

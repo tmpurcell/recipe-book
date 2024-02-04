@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Card, CardContent, styled } from '@mui/material';
 import { useRecipeContext } from '../recipeContext';
+import { useAIRecipeContext } from '../aiRecipeContext';
 
 const StyledCard = styled(Card)({
     height: '100%',
@@ -12,6 +13,7 @@ const StyledCard = styled(Card)({
 
 const ViewRecipes = () => {
     const { recipeList } = useRecipeContext();
+    const { aiRecipeList } = useAIRecipeContext();
   return (
     <Grid container spacing={1}>
       {recipeList.map((recipe) => (
@@ -37,6 +39,28 @@ const ViewRecipes = () => {
             {recipe.steps}
           </div>
         </div>
+            </CardContent>
+          </StyledCard>
+        </Grid>
+      ))}
+        {aiRecipeList.map((recipe) => (
+        <Grid key={recipe.id} item xs={12} sm={6}>
+          <StyledCard>
+            <CardContent>
+              <div>
+              <h3>{recipe.title}</h3>
+           <div>
+             <strong>Ingredients:</strong>
+             <br></br>
+             {recipe.ingredients}
+          </div>
+          <div>
+            <br></br>
+            <strong>Steps:</strong>
+            <br></br>
+            {recipe.steps}
+          </div>
+              </div>
             </CardContent>
           </StyledCard>
         </Grid>

@@ -3,6 +3,7 @@ import AIKitchen from '../components/AIKitchenPage';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+import AddRecipeButton from '../components/AddRecipeButton';
 
 function AvailableItems() {
     const [ingredients, setIngredients] = useState('');
@@ -89,7 +90,9 @@ function FormattedText({ text }) {
             <p>{structuredRecipe.ingredients}</p>
             <h2>Steps</h2>
             <p>{structuredRecipe.steps}</p>
-            
+            <div>
+                <AddRecipeButton recipeName={structuredRecipe.mealItem} ingredients={structuredRecipe.ingredients} steps={structuredRecipe.steps}></AddRecipeButton>
+            </div>
         </div>
     );
 }
