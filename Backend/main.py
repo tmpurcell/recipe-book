@@ -39,7 +39,7 @@ async def image_upload(image: Image):
     elif image.filename == 'poppyseed.jpeg':
         recipe = {
                     'title': 'Poppy Seed Chicken Casserole',
-                    'ingredients': ['4 boneless, skinless chicken breasts, boiled and shredded in large pieces', '1/2 medium yellow onion, diced', '1 (10.75oz) can cream of chicken', '16oz sour cream', '8oz cream cheese, softened', '1 tablespoon poppy seeds', '1/2 teaspoon salt', '1/4 teaspoon black pepper', '1/2 cup melted butter', '1.5 sleeves Ritz crackers, crushed']
+                    'ingredients': ['4 boneless, skinless chicken breasts, boiled and shredded in large pieces', '1/2 medium yellow onion, diced', '1 (10.75oz) can cream of chicken', '16oz sour cream', '8oz cream cheese, softened', '1 tablespoon poppy seeds', '1/2 teaspoon salt', '1/4 teaspoon black pepper', '1/2 cup melted butter', '1.5 sleeves Ritz crackers, crushed'],
                     'steps': ['Preheat over to 350 degrees. In a large bowl, mix together cream of chicken, sour cream, cream cheese, poppy seeds, salt and pepper. Add onion and chicken. Transfer mixture to a casserole dish. Top evenly with crushed crackers and drizzle melted butter on top. Bake for 25 minutes.']
                  }
         return recipe

@@ -10,6 +10,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import RecipeModel from '../models/RecipeModel';
 import { useRecipeContext } from '../recipeContext';
 import { useNavigate } from "react-router-dom";
+import { Grid, Card, CardContent, TextField, Paper } from '@mui/material';
 
 const defaultTheme = createTheme();
 
@@ -21,11 +22,20 @@ export default function UploadRecipeImage() {
   const [showConfirmation, setShowConfirmation] = useState(false); // State to manage confirmation dialog visibility
   const { addRecipe } = useRecipeContext();
   const navigate = useNavigate()
+  const [recipeTitle, setRecipeTitle] = useState('');
+  const [ingredients, setIngredients] = useState('');
+  const [steps, setSteps] = useState('');
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
     setPreviewUrl(URL.createObjectURL(file)); // Create a preview URL for the selected image
+  };
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log({ recipeTitle, ingredients, steps });
   };
 
   const handleSubmit = async (event) => {
@@ -90,7 +100,12 @@ export default function UploadRecipeImage() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <Grid container spacing={2} justifyContent="center" alignItems="center">
+      {/* First Card */}
+      <Grid item xs={12} sm={6}>
+        <Card style={{ height: '100%' }}>
+          <CardContent>
+          <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -180,5 +195,66 @@ export default function UploadRecipeImage() {
         </Box>
       </Container>
     </ThemeProvider>
+          </CardContent>
+        </Card>
+      </Grid>
+            {/* Second Card */}
+            <Grid item xs={12} sm={6}>
+        <Card>
+          <CardContent style={{ height:'100%' }}>
+          <Container component="main" maxWidth="md">
+      <Paper elevation={3} style={{ padding: 20, marginTop: 20 }}>
+        <Typography variant="h4" gutterBottom>
+          Add a New Recipe
+        </Typography>
+        <form onSubmit={handleSubmitForm}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Recipe Title"
+                variant="outlined"
+                value={recipeTitle}
+                onChange={(e) => setRecipeTitle(e.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Ingredients"
+                variant="outlined"
+                multiline
+                rows={4}
+                value={ingredients}
+                onChange={(e) => setIngredients(e.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Steps"
+                variant="outlined"
+                multiline
+                rows={6}
+                value={steps}
+                onChange={(e) => setSteps(e.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button type="submit" variant="contained" color="primary">
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </Paper>
+    </Container>
+          </CardContent>
+        </Card>
+      </Grid>
+    </Grid>
   );
 }
