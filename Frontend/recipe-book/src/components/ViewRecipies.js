@@ -9,6 +9,8 @@ const StyledCard = styled(Card)({
     flexDirection: 'column',
     variant: 'outlined',
     margin: '11px',
+    backgroundColor: '#fff0e0',
+    color: '#004921'
   });
 
 const ViewRecipes = () => {
@@ -21,7 +23,7 @@ const ViewRecipes = () => {
            <StyledCard>
              <CardContent>
              <div>
-           <h3>{recipe.title}</h3>
+           <h3 style={{color: '#004921'}}>{recipe.title}</h3>
            <div>
              <strong>Ingredients:</strong>
              <br></br>
@@ -48,7 +50,7 @@ const ViewRecipes = () => {
           <StyledCard>
             <CardContent>
               <div>
-              <h3>{recipe.title}</h3>
+              <h3 style={{color:'#004921'}}>{recipe.title}</h3>
            <div>
              <strong>Ingredients:</strong>
              <br></br>

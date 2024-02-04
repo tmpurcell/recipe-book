@@ -13,6 +13,17 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Card, CardContent, styled } from '@mui/material';
+
+const StyledCard = styled(Card)({
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  variant: 'outlined',
+  margin: '11px',
+  backgroundColor: '#fff0e0',
+  color: '#004921'
+});
 
 const defaultTheme = createTheme();
 
@@ -103,6 +114,8 @@ export default function SignUpForm() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
+        <StyledCard>
+          <CardContent>
         <CssBaseline />
         <Box
           sx={{
@@ -112,7 +125,7 @@ export default function SignUpForm() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#004921' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -199,6 +212,8 @@ export default function SignUpForm() {
             </Grid>
           </Box>
         </Box>
+        </CardContent>
+        </StyledCard>
       </Container>
     </ThemeProvider>
   );

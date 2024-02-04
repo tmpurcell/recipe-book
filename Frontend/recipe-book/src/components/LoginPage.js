@@ -12,6 +12,17 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Card, CardContent, styled } from '@mui/material';
+
+const StyledCard = styled(Card)({
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  variant: 'outlined',
+  margin: '11px',
+  backgroundColor: '#fff0e0',
+  color: '#004921'
+});
 
 function Copyright(props) {
   return (
@@ -63,6 +74,8 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
+        <StyledCard>
+          <CardContent>
         <CssBaseline />
         <Box
           sx={{
@@ -72,7 +85,7 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#004921' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -126,6 +139,8 @@ export default function SignIn() {
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
+        </CardContent>
+        </StyledCard>
       </Container>
     </ThemeProvider>
   );
